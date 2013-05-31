@@ -1,0 +1,25 @@
+{
+  "name": "random-words",
+  "version": "0.0.1",
+  "description": "Generate one or more common English words",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:punkave/random-words.git"
+  },
+  "keywords": [
+    "random",
+    "words",
+    "words",
+    "word",
+    "generator",
+    "sample",
+    "text",
+    "text"
+  ],
+  "author": "Thomas Boutell",
+  "license": "MIT"
+}
