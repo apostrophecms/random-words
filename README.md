@@ -6,6 +6,10 @@
 
 Cryptographic-quality randomness is NOT the goal, as speed matters for generating sample text and security does not. `Math.random()` is used.
 
+Installation:
+
+    npm install random-words
+
 Examples:
 
     var randomWords = require('random-words');
