@@ -6,26 +6,24 @@
 
 Cryptographic-quality randomness is NOT the goal, as speed matters for generating sample text and security does not. `Math.random()` is used.
 
-Installation:
+### Installation:
 
-    npm install random-words
+```
+$ npm install random-words
+```
 
-Examples:
+### Examples:
 
-    var randomWords = require('random-words');
+```javascript
+const randomWords = require('random-words')
 
-    console.log(randomWords());
-    army
+console.log(randomWords()) // => 'army'
+console.log(randomWords(5)) // => ['army', 'beautiful', 'became', 'if', 'actually']
+console.log(randomWords({ min: 3, max: 10 })) // => ['became', 'arrow', 'article', 'therefore']
+console.log(randomWords({ exactly: 2 })) // => ['beside', 'between']
+console.log(randomWords({ exactly: 5, join: ' ' })) // => 'army beautiful became if exactly'
+```
 
-    console.log(randomWords(5));
-    ['army', 'beautiful', 'became', 'if', 'actually']
+### License
 
-    console.log(randomWords({ min: 3, max: 10 }));
-    ['became', 'arrow', 'article', 'therefore']
-
-    console.log(randomWords({ exactly: 2 }));
-    ['beside', 'between']
-
-    console.log(randomWords({ exactly: 5, join: ' ' }))
-    'army beautiful became if exactly'
-
+MIT.
