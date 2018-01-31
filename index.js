@@ -249,21 +249,21 @@ var wordList = [
 function words(options) {
 
   function word() {
-    if(options && options.maxLength){
+    if (options && options.maxLength) {
       return GenerateWordWithMaxLength();
     }
 
-    else{
+    else {
       return GenerateRandomWord();
     }
   }
 
-  function GenerateWordWithMaxLength(){
+  function GenerateWordWithMaxLength() {
     let rightSize = false;
     let wordUsed;
     while (!rightSize) {  
       wordUsed = GenerateRandomWord();
-      if(wordUsed.length <= options.maxLength){
+      if(wordUsed.length <= options.maxLength) {
         rightSize = true;
       }
 
@@ -271,7 +271,7 @@ function words(options) {
     return wordUsed;
   }
 
-  function GenerateRandomWord(){
+  function GenerateRandomWord() {
     return wordList[randInt(wordList.length)];
   }
 
