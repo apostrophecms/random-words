@@ -31,5 +31,12 @@ describe('random-words', function() {
     phrase = phrase.replace(/[\S]/g, '');
     assert.ok(phrase.length === 4, 'result contains 4 spaces joining the 5 words');
   });
+  it('should only return words within the maxLength',function(){
+    var maxWordSize = 4
+    var words = randomWords({exactly:10000,maxLength:maxWordSize});
+    words.forEach(word => {
+      assert.ok(word.length <= maxWordSize)
+    });
+  });  
 });
 

@@ -243,10 +243,11 @@ var wordList = [
   "work","worker","world","worried","worry","worse","worth","would",
   "wrapped","write","writer","writing","written","wrong","wrote","yard",
   "year","yellow","yes","yesterday","yet","you","young","younger",
-  "your","yourself","youth","zero","zoo"
+  "your","yourself","youth","zero","zebra","zipper","zoo","zulu"
 ];
 
 function words(options) {
+
   function word() {
     return wordList[randInt(wordList.length)];
   }
@@ -265,6 +266,7 @@ function words(options) {
     options = { exactly: options };
   }
 
+
   // options supported: exactly, min, max, join
 
   if (options.exactly) {
@@ -273,8 +275,25 @@ function words(options) {
   }
   var total = options.min + randInt(options.max + 1 - options.min);
   var results = [];
+
   for (var i = 0; (i < total); i++) {
-    results.push(word());
+    //if option is within a certain size 
+    let wordUsed = word();
+    if(options.maxLength)
+    {
+      var rightSize = false;
+      while (!rightSize) {
+        if(word.length <= options.maxLength){
+          rightSize = true;
+        }
+        else{
+          wordUsed = word();
+        }
+      }
+    }
+    else{
+      results.push(wordUsed);
+    }    
   }
   if (options.join) {
     results = results.join(options.join);

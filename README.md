@@ -29,3 +29,6 @@ Examples:
     console.log(randomWords({ exactly: 5, join: ' ' }))
     'army beautiful became if exactly'
 
+    console.log(randomWords({exactly: 5, maxLength: 4}))
+    ['army','come','eye','five','fur']
+
