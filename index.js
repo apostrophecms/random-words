@@ -283,8 +283,9 @@ function words(options) {
     {
       var rightSize = false;
       while (!rightSize) {
-        if(word.length <= options.maxLength){
+        if(wordUsed.length <= options.maxLength){
           rightSize = true;
+          results.push(wordUsed)
         }
         else{
           wordUsed = word();

@@ -35,7 +35,7 @@ describe('random-words', function() {
     var maxWordSize = 4
     var words = randomWords({exactly:10000,maxLength:maxWordSize});
     words.forEach(word => {
-      assert.ok(word.length <= maxWordSize)
+      assert.ok(word.length <= maxWordSize && word.length > 0, 'result is smaller than max size: ' + maxWordSize)
     });
   });  
 });
