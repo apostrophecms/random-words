@@ -249,6 +249,29 @@ var wordList = [
 function words(options) {
 
   function word() {
+    if(options && options.maxLength){
+      return GenerateWordWithMaxLength();
+    }
+
+    else{
+      return GenerateRandomWord();
+    }
+  }
+
+  function GenerateWordWithMaxLength(){
+    let rightSize = false;
+    let wordUsed;
+    while (!rightSize) {  
+      wordUsed = GenerateRandomWord();
+      if(wordUsed.length <= options.maxLength){
+        rightSize = true;
+      }
+
+    }
+    return wordUsed;
+  }
+
+  function GenerateRandomWord(){
     return wordList[randInt(wordList.length)];
   }
 
@@ -266,9 +289,7 @@ function words(options) {
     options = { exactly: options };
   }
 
-
   // options supported: exactly, min, max, join
-
   if (options.exactly) {
     options.min = options.exactly;
     options.max = options.exactly;
@@ -277,28 +298,12 @@ function words(options) {
   var results = [];
 
   for (var i = 0; (i < total); i++) {
-    //if option is within a certain size 
-    let wordUsed = word();
-    if(options.maxLength)
-    {
-      var rightSize = false;
-      while (!rightSize) {
-        if(wordUsed.length <= options.maxLength){
-          rightSize = true;
-          results.push(wordUsed)
-        }
-        else{
-          wordUsed = word();
-        }
-      }
-    }
-    else{
-      results.push(wordUsed);
-    }    
+    results.push(word());
   }
   if (options.join) {
     results = results.join(options.join);
   }
+
   return results;
 }
 
