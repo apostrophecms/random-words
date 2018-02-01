@@ -249,20 +249,18 @@ var wordList = [
 function words(options) {
 
   function word() {
-    if (options && options.maxLength) {
-      return GenerateWordWithMaxLength();
-    }
-
-    else {
-      return GenerateRandomWord();
+    if (options && options.maxLength > 1) {
+      return generateWordWithMaxLength();
+    } else {
+      return generateRandomWord();
     }
   }
 
-  function GenerateWordWithMaxLength() {
+  function generateWordWithMaxLength() {
     let rightSize = false;
     let wordUsed;
     while (!rightSize) {  
-      wordUsed = GenerateRandomWord();
+      wordUsed = generateRandomWord();
       if(wordUsed.length <= options.maxLength) {
         rightSize = true;
       }
@@ -271,7 +269,7 @@ function words(options) {
     return wordUsed;
   }
 
-  function GenerateRandomWord() {
+  function generateRandomWord() {
     return wordList[randInt(wordList.length)];
   }
 
