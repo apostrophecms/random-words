@@ -2,7 +2,7 @@
 
 ## Generate one or more common English words
 
-`random-words` generates random words for use as sample text. We use it to generate random blog posts when testing [Apostrophe](http://apostrophenow.org).
+`random-words` generates random words for use as sample text. We use it to generate random blog posts when testing [Apostrophe](http://apostrophecms.org).
 
 Cryptographic-quality randomness is NOT the goal, as speed matters for generating sample text and security does not. `Math.random()` is used.
 
