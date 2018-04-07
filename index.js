@@ -277,6 +277,32 @@ function words(options) {
     return Math.floor(Math.random() * lessThan);
   }
 
+  function formatter(word){
+    switch(options.format.toUpperCase()){
+      case "PASCALCASE":
+        return word.toString().slice(0,1).toUpperCase().concat(word.toString().slice(1))
+      default:
+        return word;
+      }
+  }
+
+  function defaultPopulator(){
+    for (var i = 0; (i < total); i++) {
+      results.push(formatter( word() ));
+    }
+  }
+
+  function pairsPopulator(){
+    var token='';
+    for(var i = 0; i < (total*2); i++){
+        token += formatter( generateRandomWord() );
+        if ((i+1) % 2 === 0) {
+          results.push(token);
+          token = "";
+        }
+    }
+  }
+
   // No arguments = generate one word
   if (typeof(options) === 'undefined') {
     return word();
@@ -287,6 +313,16 @@ function words(options) {
     options = { exactly: options };
   }
 
+  //if type is undefined set it to 'null'
+  if(typeof(options.type) === 'undefined') {
+    options.type = 'null';
+  }
+  
+  //if no format is requested set it to 'null'
+  if(typeof(options.format) === 'undefined') {
+    options.format = 'null';
+  }
+
   // options supported: exactly, min, max, join
   if (options.exactly) {
     options.min = options.exactly;
@@ -295,15 +331,24 @@ function words(options) {
   var total = options.min + randInt(options.max + 1 - options.min);
   var results = [];
 
-  for (var i = 0; (i < total); i++) {
-    results.push(word());
+  var type = options.type.toUpperCase();
+  
+  switch(type){
+    case "PAIRS":
+      pairsPopulator();
+      break;
+    default:
+      defaultPopulator();
+      break;
   }
+
   if (options.join) {
     results = results.join(options.join);
   }
 
   return results;
 }
+
 
 module.exports = words;
 // Export the word list as it is often useful
