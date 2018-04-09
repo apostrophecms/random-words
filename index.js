@@ -277,32 +277,6 @@ function words(options) {
     return Math.floor(Math.random() * lessThan);
   }
 
-  function formatter(word){
-    switch(options.format.toUpperCase()){
-      case "PASCALCASE":
-        return word.toString().slice(0,1).toUpperCase().concat(word.toString().slice(1))
-      default:
-        return word;
-      }
-  }
-
-  function defaultPopulator(){
-    for (var i = 0; (i < total); i++) {
-      results.push(formatter( word() ));
-    }
-  }
-
-  function pairsPopulator(){
-    var token='';
-    for(var i = 0; i < (total*2); i++){
-        token += formatter( generateRandomWord() );
-        if ((i+1) % 2 === 0) {
-          results.push(token);
-          token = "";
-        }
-    }
-  }
-
   // No arguments = generate one word
   if (typeof(options) === 'undefined') {
     return word();
@@ -313,35 +287,29 @@ function words(options) {
     options = { exactly: options };
   }
 
-  //if type is undefined set it to 'null'
-  if(typeof(options.type) === 'undefined') {
-    options.type = 'null';
-  }
-  
-  //if no format is requested set it to 'null'
-  if(typeof(options.format) === 'undefined') {
-    options.format = 'null';
-  }
-
   // options supported: exactly, min, max, join
   if (options.exactly) {
     options.min = options.exactly;
     options.max = options.exactly;
   }
-  var total = options.min + randInt(options.max + 1 - options.min);
-  var results = [];
-
-  var type = options.type.toUpperCase();
   
-  switch(type){
-    case "PAIRS":
-      pairsPopulator();
-      break;
-    default:
-      defaultPopulator();
-      break;
+  // not a number = one word par string
+  if (typeof(options.wordsPerString) !== 'number') {
+    options.wordsPerString = 1;
   }
 
+  var total = options.min + randInt(options.max + 1 - options.min);
+  var results = [];
+  var token = '';
+
+  for (var i = 0; (i < total * options.wordsPerString); i++) {
+    token += word();
+    if ((i+1) % options.wordsPerString === 0) {
+      results.push(token);
+      token='';
+    }
+    
+  }
   if (options.join) {
     results = results.join(options.join);
   }
@@ -349,8 +317,6 @@ function words(options) {
   return results;
 }
 
-
 module.exports = words;
 // Export the word list as it is often useful
 words.wordList = wordList;
-
