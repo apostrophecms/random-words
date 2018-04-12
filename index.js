@@ -305,13 +305,13 @@ function words(options) {
 
   //not a string = separator is a space
   if (typeof(options.separator) !== 'string') {
-    options.separator= ' ';
+    options.separator = ' ';
   }
 
   var total = options.min + randInt(options.max + 1 - options.min);
   var results = [];
   var token = '';
-  var relativeIndex=0;
+  var relativeIndex = 0;
 
   for (var i = 0; (i < total * options.wordsPerString); i++) {
     if (relativeIndex === options.wordsPerString - 1) {
@@ -321,10 +321,10 @@ function words(options) {
       token += options.formatter(word(), relativeIndex) + options.separator;
     }
     relativeIndex++;
-    if ((i+1) % options.wordsPerString === 0) {
+    if ((i + 1) % options.wordsPerString === 0) {
       results.push(token);
-      token=''; 
-      relativeIndex=0;
+      token = ''; 
+      relativeIndex = 0;
     }
    
   }
