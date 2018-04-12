@@ -298,17 +298,35 @@ function words(options) {
     options.wordsPerString = 1;
   }
 
+  //not a function = returns the raw word
+  if (typeof(options.formatter) !== 'function') {
+    options.formatter = (word) => word;
+  }
+
+  //not a string = separator is a space
+  if (typeof(options.separator) !== 'string') {
+    options.separator= ' ';
+  }
+
   var total = options.min + randInt(options.max + 1 - options.min);
   var results = [];
   var token = '';
+  var relativeIndex=0;
 
   for (var i = 0; (i < total * options.wordsPerString); i++) {
-    token += word();
+    if (relativeIndex === options.wordsPerString - 1) {
+      token += options.formatter(word(), relativeIndex);
+    }
+    else {
+      token += options.formatter(word(), relativeIndex) + options.separator;
+    }
+    relativeIndex++;
     if ((i+1) % options.wordsPerString === 0) {
       results.push(token);
-      token='';
+      token=''; 
+      relativeIndex=0;
     }
-    
+   
   }
   if (options.join) {
     results = results.join(options.join);
