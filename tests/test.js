@@ -37,6 +37,31 @@ describe('random-words', function() {
     words.forEach(word => {
       assert.ok(word.length <= maxWordSize && word.length > 0, 'result is smaller than max size: ' + maxWordSize)
     });
-  });  
+  });
+  it('should return 5 space separated words for each string if wordsPerString is set to 5 and exactly > 1', function() {
+    var words = randomWords({exactly:10, wordsPerString:5});
+    words.forEach(string => {
+      stringSplitted = string.split(' ');
+      assert.ok(stringSplitted.length === 5, 'the i-th string contains 5 words');
+    });
+  });
+  it('should reuturn 5 words separated by a separator for each string if wordsPerString > 1, separator is defined as a string and exactly > 1', function() {
+    const separator = '-';
+    var words = randomWords({exactly:10, wordsPerString:5, separator});
+    words.forEach(string => {
+      stringSplitted = string.split(separator);
+      assert.ok(typeof(separator) === 'string', 'separator is a string');
+      assert.ok(stringSplitted.length === 5, 'the i-th string contains 5 words');
+    });
+  });
+  it('should return styled strings if formatter is defined as a function that returns a string', function() {
+    formatter = (word) => word.toUpperCase();
+    assert.ok(typeof(formatter) === 'function', 'formatter is a function');
+    assert.ok(typeof(formatter('test')) === 'string', 'formatter returns a string');
+    var words = randomWords({exactly:10, formatter});
+    words.forEach(word => {
+      assert.ok(word === word.toUpperCase(), 'word is formatted')
+    });
+  });
 });
 
