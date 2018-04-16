@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0
+
+* Addition of `wordsPerString`, `separator` and `format` options. Thanks to Matt Veraldi.
+
 ## 1.0.0
 
 * Addition of `maxLength` option, thanks to Scoombe.
