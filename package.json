@@ -20,5 +20,8 @@
     "text"
   ],
   "author": "Thomas Boutell",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^5.1.1"
+  }
 }
