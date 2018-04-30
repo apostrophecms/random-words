@@ -10,6 +10,10 @@ Installation:
 
     npm install random-words
 
+Usage with TypeScript:
+
+    import randomWords = require('random-words-typed');
+
 Examples:
 
     var randomWords = require('random-words');
