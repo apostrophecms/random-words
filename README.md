@@ -26,6 +26,9 @@ Examples:
     console.log(randomWords({ exactly: 2 }));
     ['beside', 'between']
 
+    console.log(randomWords({ exactly: 4, minLength: 3, maxLength: 5 }));
+    ['here', 'there', 'soon', 'cat']
+
     console.log(randomWords({ exactly: 5, join: ' ' }))
     'army beautiful became if exactly'
 

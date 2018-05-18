@@ -38,6 +38,21 @@ describe('random-words', function() {
       assert.ok(word.length <= maxWordSize && word.length > 0, 'result is smaller than max size: ' + maxWordSize)
     });
   });
+  it('should only return words within the minLength', function() {
+    var minWordSize = 4
+    var words = randomWords({exactly:10000,minLength:minWordSize});
+    words.forEach(word => {
+      assert.ok(word.length >= minWordSize && word.length > 0, 'result is larger than min size: ' + minWordSize)
+    });
+  });
+  it('should only return words within the bounds of minLength and maxLength', function() {
+    var minWordSize = 4
+    var maxWordSize = 8
+    var words = randomWords({exactly:10000,minLength:minWordSize, maxLength:maxWordSize});
+    words.forEach(word => {
+      assert.ok(word.length >= minWordSize  && word.length <= maxWordSize && word.length > 0, 'result is larger than min size: ' + minWordSize + ' and smaller than max size: ' + maxWordSize)
+    });
+  });
   it('should return 5 space separated words for each string if wordsPerString is set to 5 and exactly > 1', function() {
     var words = randomWords({exactly:10, wordsPerString:5});
     words.forEach(string => {

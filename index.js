@@ -249,28 +249,35 @@ var wordList = [
 function words(options) {
 
   function word() {
-    if (options && options.maxLength > 1) {
-      return generateWordWithMaxLength();
-    } else {
-      return generateRandomWord();
+    if (options) {
+      if (options.maxLength > 1 && options.minLength > 0) {
+        return generateWordWithMinAndMaxLength();
+      } else if (options.maxLength > 1) {
+        return generateWordWithMaxLength()
+      } else if (options.minLength > 0) {
+        return generateWordWithMinLength()
+      }
     }
+    return generateRandomWord();
   }
 
   function generateWordWithMaxLength() {
-    let rightSize = false;
-    let wordUsed;
-    while (!rightSize) {  
-      wordUsed = generateRandomWord();
-      if(wordUsed.length <= options.maxLength) {
-        rightSize = true;
-      }
-
-    }
-    return wordUsed;
+    const filteredWordList = wordList.filter(word => word.length <= options.maxLength);
+    return generateRandomWord(filteredWordList);
   }
 
-  function generateRandomWord() {
-    return wordList[randInt(wordList.length)];
+  function generateWordWithMinLength() {
+    const filteredWordList = wordList.filter(word => word.length >= options.minLength);
+    return generateRandomWord(filteredWordList);
+  }
+
+  function generateWordWithMinAndMaxLength() {
+    const filteredWordList = wordList.filter(word => word.length >= options.minLength && word.length <= options.maxLength);
+    return generateRandomWord(filteredWordList);
+  }
+
+  function generateRandomWord(list = wordList) {
+    return list[randInt(list.length)];
   }
 
   function randInt(lessThan) {
@@ -292,7 +299,7 @@ function words(options) {
     options.min = options.exactly;
     options.max = options.exactly;
   }
-  
+
   // not a number = one word par string
   if (typeof(options.wordsPerString) !== 'number') {
     options.wordsPerString = 1;
@@ -323,10 +330,10 @@ function words(options) {
     relativeIndex++;
     if ((i + 1) % options.wordsPerString === 0) {
       results.push(token);
-      token = ''; 
+      token = '';
       relativeIndex = 0;
     }
-   
+
   }
   if (options.join) {
     results = results.join(options.join);
