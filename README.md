@@ -23,6 +23,9 @@ Examples:
     console.log(randomWords({ min: 3, max: 10 }));
     ['became', 'arrow', 'article', 'therefore']
 
+    console.log(randomWords({ minLength: 3, maxLength: 5 }));
+    ['here', 'there', 'soon', 'cat']
+
     console.log(randomWords({ exactly: 2 }));
     ['beside', 'between']
 
