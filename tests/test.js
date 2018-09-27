@@ -31,7 +31,7 @@ describe('random-words', function() {
     phrase = phrase.replace(/[\S]/g, '');
     assert.ok(phrase.length === 4, 'result contains 4 spaces joining the 5 words');
   });
-    it('should return 5 concatinated words when join is used with an empty string and exactly: 5', function() {
+    it('should return 5 concatenated words when join is used with an empty string and exactly: 5', function() {
         var phrase = randomWords({ exactly: 5, join: '' });
         assert.ok((typeof(phrase) === 'string'), 'result is a string');
         assert.ok(phrase.match(/\w/), 'result contains text, no spaces');
