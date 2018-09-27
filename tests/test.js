@@ -23,7 +23,7 @@ describe('random-words', function() {
       lengths[words.length] = true;
     }
     assert.ok(Object.keys(lengths).length > 1, 'result varies in length');
-  })
+  });
   it('should return 5 space separated words when join is used with exactly: 5', function() {
     var phrase = randomWords({ exactly: 5, join: ' ' });
     assert.ok((typeof(phrase) === 'string'), 'result is a string');
@@ -31,6 +31,11 @@ describe('random-words', function() {
     phrase = phrase.replace(/[\S]/g, '');
     assert.ok(phrase.length === 4, 'result contains 4 spaces joining the 5 words');
   });
+    it('should return 5 concatinated words when join is used with an empty string and exactly: 5', function() {
+        var phrase = randomWords({ exactly: 5, join: '' });
+        assert.ok((typeof(phrase) === 'string'), 'result is a string');
+        assert.ok(phrase.match(/\w/), 'result contains text, no spaces');
+    });
   it('should only return words within the maxLength', function() {
     var maxWordSize = 4
     var words = randomWords({exactly:10000,maxLength:maxWordSize});
