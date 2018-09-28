@@ -328,7 +328,7 @@ function words(options) {
     }
    
   }
-  if (options.join !== undefined) {
+  if (options.join || options.join.length === 0) {
     results = results.join(options.join);
   }
 
