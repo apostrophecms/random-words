@@ -328,7 +328,7 @@ function words(options) {
     }
    
   }
-  if (options.join || options.join.length === 0) {
+  if (options.hasOwnProperty('join')) {
     results = results.join(options.join);
   }
 
