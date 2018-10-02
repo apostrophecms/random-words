@@ -328,7 +328,7 @@ function words(options) {
     }
    
   }
-  if (options.join) {
+  if (typeof options.join === 'string') {
     results = results.join(options.join);
   }
 
