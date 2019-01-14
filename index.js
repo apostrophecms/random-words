@@ -253,7 +253,7 @@ var longestWord = wordList.reduce(function (word1, word2) {
 function words(options) {
   function word() {
     let maxLength = options && options.maxLength > 1 ? options.maxLength: longestWord.length;
-    let minLength = options && options.minLength < longestWord.length ? options.minLength: 0;
+    let minLength = options && options.minLength <= longestWord.length ? options.minLength: 0;
     return generateWordWithLimits(maxLength, minLength);
   }
 
