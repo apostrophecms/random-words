@@ -51,6 +51,23 @@ describe('random-words', function () {
             assert.ok(word.length <= maxWordSize && word.length > 0, 'result is smaller than max size: ' + maxWordSize)
         });
     });
+    it('should return words with length=5', function () {
+        var wordSize = 5;
+        var words = randomWords({exactly: 10000, minLength: wordSize, maxLength: wordSize})
+        words.forEach(word => {
+            assert.ok(word.length === wordSize)
+        })
+    });
+
+    it('should return words with length from 5 to 7', function () {
+        var minLengthSize = 3;
+        var maxLengthSize = 5;
+        var words = randomWords({exactly: 10000, minLength: minLengthSize, maxLength: maxLengthSize})
+        words.forEach(word => {
+            assert.ok(word.length >= minLengthSize && word.length <= maxLengthSize)
+        })
+    });
+
     it('should return 5 space separated words for each string if wordsPerString is set to 5 and exactly > 1', function () {
         var words = randomWords({exactly: 10, wordsPerString: 5});
         words.forEach(string => {

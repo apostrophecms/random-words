@@ -246,25 +246,23 @@ var wordList = [
   "your","yourself","youth","zero","zebra","zipper","zoo","zulu"
 ];
 
-function words(options) {
+var longestWord = wordList.reduce(function (word1, word2) {
+  return word1.length > word2.length ? word1 : word2
+});
 
+function words(options) {
   function word() {
-    if (options && options.maxLength > 1) {
-      return generateWordWithMaxLength();
-    } else {
-      return generateRandomWord();
-    }
+    let maxLength = options && options.maxLength > 1 ? options.maxLength: longestWord.length;
+    let minLength = options && options.minLength < longestWord.length ? options.minLength: 0;
+    return generateWordWithLimits(maxLength, minLength);
   }
 
-  function generateWordWithMaxLength() {
+  function generateWordWithLimits(maxLength, minLength) {
     let rightSize = false;
     let wordUsed;
-    while (!rightSize) {  
+    while (!rightSize) {
       wordUsed = generateRandomWord();
-      if(wordUsed.length <= options.maxLength) {
-        rightSize = true;
-      }
-
+      rightSize = (wordUsed.length <= maxLength && wordUsed.length >= minLength);
     }
     return wordUsed;
   }
@@ -292,7 +290,7 @@ function words(options) {
     options.min = options.exactly;
     options.max = options.exactly;
   }
-  
+
   // not a number = one word par string
   if (typeof(options.wordsPerString) !== 'number') {
     options.wordsPerString = 1;
@@ -323,10 +321,10 @@ function words(options) {
     relativeIndex++;
     if ((i + 1) % options.wordsPerString === 0) {
       results.push(token);
-      token = ''; 
+      token = '';
       relativeIndex = 0;
     }
-   
+
   }
   if (typeof options.join === 'string') {
     results = results.join(options.join);
