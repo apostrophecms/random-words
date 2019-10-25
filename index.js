@@ -335,6 +335,7 @@ function words(options) {
   return results;
 }
 
-module.exports = words;
-// Export the word list as it is often useful
-words.wordList = wordList;
+module.exports = {
+  words,
+  wordList
+}
