@@ -257,8 +257,8 @@ function words(options) {
   }
 
   function generateWordWithMaxLength() {
-    let rightSize = false;
-    let wordUsed;
+    var rightSize = false;
+    var wordUsed;
     while (!rightSize) {  
       wordUsed = generateRandomWord();
       if(wordUsed.length <= options.maxLength) {

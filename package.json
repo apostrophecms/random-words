@@ -1,6 +1,6 @@
 {
   "name": "random-words",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Generate one or more common English words",
   "main": "index.js",
   "scripts": {
@@ -20,5 +20,8 @@
     "text"
   ],
   "author": "Thomas Boutell",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "mocha": "^7.1.1"
+  }
 }
