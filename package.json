@@ -4,7 +4,7 @@
   "description": "Generate one or more common English words",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests/test.js"
+    "test": "npm i mocha && mocha tests/test.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
   ],
   "author": "Thomas Boutell",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "mocha": "^7.1.1"
   }
 }
