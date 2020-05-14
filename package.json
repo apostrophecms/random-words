@@ -4,7 +4,7 @@
   "description": "Generate one or more common English words",
   "main": "index.js",
   "scripts": {
-    "test": "npm i mocha && mocha tests/test.js"
+    "test": "mocha tests/test.js"
   },
   "repository": {
     "type": "git",
