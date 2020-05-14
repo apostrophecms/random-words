@@ -21,7 +21,7 @@
   ],
   "author": "Thomas Boutell",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "mocha": "^7.1.1"
   }
 }
