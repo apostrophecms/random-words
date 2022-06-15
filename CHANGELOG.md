@@ -1,5 +1,9 @@
 # Changelog
 
+## main
+
+* Adds typescript bindings
+
 ## 1.1.2 - 2022-01-20
 
 * Updates mocha to v9.
