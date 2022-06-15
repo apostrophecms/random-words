@@ -2,7 +2,7 @@
 
 ## main
 
-* Adds typescript bindings
+* Adds typescript typings
 
 ## 1.1.2 - 2022-01-20
 
