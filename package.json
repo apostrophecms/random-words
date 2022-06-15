@@ -3,6 +3,7 @@
   "version": "1.1.2",
   "description": "Generate one or more common English words",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "mocha tests/test.js"
   },
