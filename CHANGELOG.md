@@ -1,8 +1,8 @@
 # Changelog
 
-## main
+## 1.2.0 - 2022-06-16
 
-* Adds typescript typings
+* Adds typescript typings. Thanks to Tim Kennedy for this contribution.
 
 ## 1.1.2 - 2022-01-20
 
