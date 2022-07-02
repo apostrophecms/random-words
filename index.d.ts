@@ -4,7 +4,7 @@ declare type WordsOptions = {
   exactly?: number;
   maxLength?: number;
   wordsPerString?: number;
-  seperator?: string;
+  separator?: string;
   formatter?: (word: string, index: number) => string;
 };
 
