@@ -250,7 +250,7 @@ var wordList = [
 
 function words(options) {
   // initalize random number generator for words if options.seed is provided
-  const wordRNG = options?.seed ? new seedrandom(options.seed) : null;
+  const random = options?.seed ? new seedrandom(options.seed) : null;
 
   function word() {
     if (options && options.maxLength > 1) {
@@ -274,18 +274,13 @@ function words(options) {
   }
 
   function generateRandomWord() {
-    return wordList[randWordInt(wordList.length)];
-  }
-
-  // random int as ordained by Math.random()
-  function randInt(lessThan) {
-    return Math.floor(Math.random() * lessThan);
+    return wordList[randInt(wordList.length)];
   }
 
   // random int as seeded by options.seed if applicable, or Math.random() otherwise
-  function randWordInt(lessThan) {
-    const rand = wordRNG ? wordRNG() : Math.random();
-    return Math.floor(rand * lessThan);
+  function randInt(lessThan) {
+    const r = random ? random() : Math.random();
+    return Math.floor(r * lessThan);
   }
 
   // No arguments = generate one word

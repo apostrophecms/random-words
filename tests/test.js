@@ -81,18 +81,27 @@ describe('random-words', function () {
         const exactly = 20;
         const join = ' ';
 
-        var words = randomWords({ seed, exactly, join });
-        var words2 = randomWords({ seed, exactly, join });
+        const words = randomWords({ seed, exactly, join });
+        const words2 = randomWords({ seed, exactly, join });
 
-        // all words should be the same
         assert.ok(words == words2, 'words are the same')
+    });
+    it('should return the same number of words if the same seed is used', function () {
+        const seed = 'seed1'
+        const min = 1;
+        const max = 10;
+
+        const words = randomWords({ seed, min, max });
+        const words2 = randomWords({ seed, min, max });
+
+        assert.ok(words.length == words2.length, 'number of words is the same')
     });
     it('should return different words if no seeds are provided', function () {
         const exactly = 20;
         const join = ' ';
 
-        var words = randomWords({ exactly, join });
-        var words2 = randomWords({ exactly, join });
+        const words = randomWords({ exactly, join });
+        const words2 = randomWords({ exactly, join });
 
         // with 1952 possible words, at least one word in 20 should be different
         assert.ok(words != words2, 'words are different')
@@ -100,13 +109,23 @@ describe('random-words', function () {
     it('should return different words if different seeds are used', function () {
         const exactly = 20;
 
-        var words = randomWords({ seed: 'seed1', exactly });
-        var words2 = randomWords({ seed: 'seed2', exactly });
+        const words = randomWords({ seed: 'seed1', exactly });
+        const words2 = randomWords({ seed: 'seed2', exactly });
 
         // with these seeds, all words should be different
         for (let i = 0; i < exactly; i++) {
             assert.ok(words[i] != words2[i], 'words are different')
         }
+    });
+    it('should return different number of words if different seeds are used', function () {
+        const min = 1;
+        const max = 10;
+
+        const words = randomWords({ seed: 'seed1', min, max });
+        const words2 = randomWords({ seed: 'seed2', min, max });
+
+        // with these seeds, the number of words should 5 and 3
+        assert.ok(words.length != words2.length, 'number of words is different')
     });
 });
 
