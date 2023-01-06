@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1 - 2023-01-06
+
+* Fixes misspelling of `separator` in typings. Thanks to Andrei Gec for the correction.
+
 ## 1.2.0 - 2022-06-16
 
 * Adds typescript typings. Thanks to Tim Kennedy for this contribution.
