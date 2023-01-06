@@ -6,6 +6,7 @@ declare type WordsOptions = {
   wordsPerString?: number;
   separator?: string;
   formatter?: (word: string, index: number) => string;
+  seed?: string;
 };
 
 declare type JoinedWordsOptions = WordsOptions & { join: string; };

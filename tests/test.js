@@ -76,5 +76,37 @@ describe('random-words', function () {
             assert.ok(word === word.toUpperCase(), 'word is formatted')
         });
     });
+    it('should return the same words if the same seed is used', function () {
+        const seed = 'seed1'
+        const exactly = 20;
+        const join = ' ';
+
+        var words = randomWords({ seed, exactly, join });
+        var words2 = randomWords({ seed, exactly, join });
+
+        // all words should be the same
+        assert.ok(words == words2, 'words are the same')
+    });
+    it('should return different words if no seeds are provided', function () {
+        const exactly = 20;
+        const join = ' ';
+
+        var words = randomWords({ exactly, join });
+        var words2 = randomWords({ exactly, join });
+
+        // with 1952 possible words, at least one word in 20 should be different
+        assert.ok(words != words2, 'words are different')
+    });
+    it('should return different words if different seeds are used', function () {
+        const exactly = 20;
+
+        var words = randomWords({ seed: 'seed1', exactly });
+        var words2 = randomWords({ seed: 'seed2', exactly });
+
+        // with these seeds, all words should be different
+        for (let i = 0; i < exactly; i++) {
+            assert.ok(words[i] != words2[i], 'words are different')
+        }
+    });
 });
 
