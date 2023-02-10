@@ -2,7 +2,7 @@
 
 ## UNRELEASED - 2023-01-06
 
-* Adds new `seed` option.
+* Adds new `seed` option. Thanks to [Nathan Klingensmith](https://github.com/IamParadoxdotexe).
 
 ## 1.2.1 - 2023-01-06
 
