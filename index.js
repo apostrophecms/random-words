@@ -1,3 +1,5 @@
+var seedrandom = require('seedrandom');
+
 var wordList = [
   // Borrowed from xkcd password generator which borrowed it from wherever
   "ability","able","aboard","about","above","accept","accident","according",
@@ -247,6 +249,8 @@ var wordList = [
 ];
 
 function words(options) {
+  // initalize random number generator for words if options.seed is provided
+  const random = options?.seed ? new seedrandom(options.seed) : null;
 
   function word() {
     if (options && options.maxLength > 1) {
@@ -273,8 +277,10 @@ function words(options) {
     return wordList[randInt(wordList.length)];
   }
 
+  // random int as seeded by options.seed if applicable, or Math.random() otherwise
   function randInt(lessThan) {
-    return Math.floor(Math.random() * lessThan);
+    const r = random ? random() : Math.random();
+    return Math.floor(r * lessThan);
   }
 
   // No arguments = generate one word

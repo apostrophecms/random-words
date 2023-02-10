@@ -1,5 +1,9 @@
 # Changelog
 
+## UNRELEASED - 2023-01-06
+
+* Adds new `seed` option.
+
 ## 1.2.1 - 2023-01-06
 
 * Fixes misspelling of `separator` in typings. Thanks to Andrei Gec for the correction.
