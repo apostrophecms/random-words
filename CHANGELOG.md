@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.3.0 - 2023-01-06
+## UNRELEASED - 2023-01-06
 
 * Adds new `seed` option.
 
