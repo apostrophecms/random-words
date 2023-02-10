@@ -29,9 +29,10 @@ Examples:
     ['beside', 'between']
 
     console.log(randomWords({ min: 2, max: 3, seed: 'my-seed' }));
-    console.log(randomWords({ min: 2, max: 3, seed: 'my-seed' }));
-    // using a seed yields the same random words
     ['plenty', 'pure']
+
+    // this call will yield exactly the same results as the last since the same `seed` was used and the other inputs are identical
+    console.log(randomWords({ min: 2, max: 3, seed: 'my-seed' }));
     ['plenty', 'pure']
 
     console.log(randomWords({ exactly: 5, join: ' ' }))
