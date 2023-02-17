@@ -1,6 +1,6 @@
 # Changelog
 
-## UNRELEASED - 2023-01-06
+## 1.3.0 - 2023-02-17
 
 * Adds new `seed` option. Thanks to [Nathan Klingensmith](https://github.com/IamParadoxdotexe).
 
