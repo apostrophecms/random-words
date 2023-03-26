@@ -2,6 +2,7 @@ declare type WordsOptions = {
   min?: number;
   max?: number;
   exactly?: number;
+  minLength?: number;
   maxLength?: number;
   wordsPerString?: number;
   separator?: string;
@@ -9,7 +10,7 @@ declare type WordsOptions = {
   seed?: string;
 };
 
-declare type JoinedWordsOptions = WordsOptions & { join: string; };
+declare type JoinedWordsOptions = WordsOptions & { join: string };
 
 declare function words(count: number): string[];
 declare function words(options: WordsOptions): string[];
