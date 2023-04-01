@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.4.0 - 2023-03-25
+## UNRELEASED
 
 - Addition of `minLength` and `maxLength` options
 - Code update to ES6 Syntax

@@ -47,13 +47,23 @@ describe("random-words", function () {
     var words = randomWords({ exactly: 5, join: null });
     assert.ok(words.length === 5, "contains 5 elements");
   });
+  it("should only return words greater than or equal to minLength", function () {
+    const minWordSize = 5;
+    const words = randomWords({ exactly: 10000, minLength: minWordSize });
+    words.forEach((word) => {
+      assert.ok(
+        word.length >= minWordSize,
+        "result is greater than or equal max size: " + minWordSize
+      );
+    });
+  });
   it("should only return words within the maxLength", function () {
     const maxWordSize = 4;
     const words = randomWords({ exactly: 10000, maxLength: maxWordSize });
     words.forEach((word) => {
       assert.ok(
-        word.length <= maxWordSize && word.length > 0,
-        "result is smaller than max size: " + maxWordSize
+        word.length <= maxWordSize,
+        "result is smaller than or equal max size" + maxWordSize
       );
     });
   });
