@@ -12,7 +12,6 @@ const longestWordSize = wordList.reduce((longestWord, currentWord) =>
 function words(options) {
   // initalize random number generator for words if options.seed is provided
   const random = options?.seed ? new seedrandom(options.seed) : null;
-  const { minLength, maxLength, ...rest } = options || {};
 
   const { minLength, maxLength, ...rest } = options || {};
 
