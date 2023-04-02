@@ -44,7 +44,7 @@ describe("random-words", function () {
     assert.ok(words.length === 5, "contains 5 elements");
   });
   it("should return 5 words when called with exactly: 5 and join: null", function () {
-    var words = randomWords({ exactly: 5, join: null });
+    const words = randomWords({ exactly: 5, join: null });
     assert.ok(words.length === 5, "contains 5 elements");
   });
   it("should only return words greater than or equal to minLength", function () {
