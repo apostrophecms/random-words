@@ -32,6 +32,12 @@ console.log(randomWords({ maxLength: 6 }));
 console.log(randomWords({ minLength: 5, maxLength: 5 }));
 //output : 'world'
 
+console.log(randomWords({ minLength: 11, maxLength: 10000 })); //maxLength limited to the longest possible word
+//output: 'environment'
+
+console.log(randomWords({ minLength: 10000, maxLength: 5 })); //minLength limited to the maxLength
+//output: 'short'
+
 console.log(randomWords({ min: 3, max: 10 }));
 //output: ['became', 'arrow', 'article', 'therefore']
 

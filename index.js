@@ -16,8 +16,17 @@ function words(options) {
   const { minLength, maxLength, ...rest } = options || {};
 
   function word() {
-    const min = isNaN(minLength) ? shortestWordSize : limitWordSize(minLength);
-    const max = isNaN(maxLength) ? longestWordSize : limitWordSize(maxLength);
+    let min =
+      typeof minLength !== "number"
+        ? shortestWordSize
+        : limitWordSize(minLength);
+
+    const max =
+      typeof maxLength !== "number"
+        ? longestWordSize
+        : limitWordSize(maxLength);
+
+    if (min > max) min = max;
 
     let rightSize = false;
     let wordUsed;
@@ -46,25 +55,15 @@ function words(options) {
   }
 
   // No arguments = generate one word
-  if (typeof options === "undefined") {
+  if (options === undefined) {
     return word();
   }
 
-  // Generate one word with limits
-  if (
-    (typeof minLength !== "undefined") | (typeof maxLength !== "undefined") &&
-    Object.keys(rest).length === 0
-  ) {
-    return word();
-  }
-
-  // Generate one word with limits
-  if (minLength | maxLength && Object.keys(rest).length === 0) {
-    return word();
-  }
   // Just a number = return that many words
   if (typeof options === "number") {
     options = { exactly: options };
+  } else if (Object.keys(rest).length === 0) {
+    return word();
   }
 
   // options supported: exactly, min, max, join

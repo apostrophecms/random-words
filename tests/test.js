@@ -1,5 +1,10 @@
 import assert from "assert";
 import randomWords from "../index.js";
+import wordList from "../words/wordList.js";
+
+const longestWordSize = wordList.reduce((longestWord, currentWord) =>
+  currentWord.length > longestWord.length ? currentWord : longestWord
+).length;
 
 describe("random-words", function () {
   it("should return one word when called with no arguments", function () {
@@ -89,6 +94,31 @@ describe("random-words", function () {
     words.forEach((word) => {
       assert.ok(word.length === wordSize);
     });
+  });
+  it("maxLength larger than the longest word should not result in an endless loop", function () {
+    const wordSize = 100000;
+    const words = randomWords({
+      exactly: 1000,
+      maxLength: wordSize,
+    });
+    words.forEach((word) => {
+      assert.ok(word.length <= longestWordSize);
+    });
+  });
+  it("minLength larger than the longest word should not result in an endless loop", function () {
+    const wordSize = 100000;
+    const words = randomWords({
+      exactly: 1000,
+      minLength: wordSize,
+    });
+    words.forEach((word) => {
+      assert.ok(word.length <= longestWordSize);
+    });
+  });
+  it("must return a word even without passing a number to minLength and maxLength", function () {
+    const word1 = randomWords({ minLength: undefined, maxLength: false });
+    const word2 = randomWords({ minLength: "string", maxLength: null });
+    assert.ok(typeof word1 === "string" && typeof word2 === "string");
   });
   it("should return 5 space separated words for each string if wordsPerString is set to 5 and exactly > 1", function () {
     const words = randomWords({ exactly: 10, wordsPerString: 5 });

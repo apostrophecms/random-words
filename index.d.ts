@@ -12,7 +12,7 @@ declare type WordsOptions = {
 
 declare type JoinedWordsOptions = WordsOptions & { join: string };
 
-declare function words(count: number): string[];
+declare function words(count?: number): string[];
 declare function words(options: WordsOptions): string[];
 declare function words(options: JoinedWordsOptions): string;
 
