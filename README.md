@@ -66,6 +66,9 @@ console.log(randomWords({ exactly: 5, maxLength: 4 }));
 console.log(randomWords({ exactly: 2, minLength: 3, maxLength: 3 }));
 //output: ['you, 'are']
 
+console.log(randomWords({ exactly: 3, minLength: 5, maxLength: 100000 }));
+//output: ['understanding', 'should', 'yourself']
+
 console.log(randomWords({ exactly: 5, wordsPerString: 2 }));
 //ooutput: [ 'salt practical', 'also brief', 'country muscle', 'neighborhood beyond', 'grew pig' ]
 
