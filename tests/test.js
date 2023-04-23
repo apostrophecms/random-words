@@ -1,6 +1,6 @@
 import assert from "assert";
 import randomWords from "../index.js";
-import wordList from "../words/wordList.js";
+import { wordList } from "../index.js";
 
 const longestWordSize = wordList.reduce((longestWord, currentWord) =>
   currentWord.length > longestWord.length ? currentWord : longestWord
