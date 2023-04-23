@@ -52,27 +52,46 @@ describe("random-words", function () {
     const words = randomWords({ exactly: 5, join: null });
     assert.ok(words.length === 5, "contains 5 elements");
   });
-  it("should only return words greater than or equal to minLength", function () {
-    const minWordSize = 5;
+  it("should return one word with a minimum of 8 letters", function () {
+    const minWordSize = 8;
+    const word = randomWords({ minLength: minWordSize });
+
+    assert.ok(word.length >= minWordSize, "result is less than 8 letters");
+  });
+  it("should return one word with a maximum of 5 letters", function () {
+    const maxWordSize = 5;
+    const word = randomWords({ maxLength: maxWordSize });
+
+    assert.ok(word.length <= maxWordSize, "result exceeded 5 letters");
+  });
+  it("should return one word with the length between 3 and 5 ", function () {
+    const minLengthSize = 3;
+    const maxLengthSize = 5;
+    const word = randomWords({
+      minLength: minLengthSize,
+      maxLength: maxLengthSize,
+    });
+
+    assert.ok(
+      word.length >= minLengthSize && word.length <= maxLengthSize,
+      "result is not between the limit of 3 and 5"
+    );
+  });
+  it("should only return words with a minimum of 8 letters", function () {
+    const minWordSize = 8;
     const words = randomWords({ exactly: 10000, minLength: minWordSize });
     words.forEach((word) => {
-      assert.ok(
-        word.length >= minWordSize,
-        "result is greater than or equal max size: " + minWordSize
-      );
+      assert.ok(word.length >= minWordSize, "result is less than 8 letters");
     });
   });
-  it("should only return words within the maxLength", function () {
-    const maxWordSize = 4;
+  it("should only return words with a maximum of 5 letters", function () {
+    const maxWordSize = 5;
     const words = randomWords({ exactly: 10000, maxLength: maxWordSize });
     words.forEach((word) => {
-      assert.ok(
-        word.length <= maxWordSize,
-        "result is smaller than or equal max size" + maxWordSize
-      );
+      assert.ok(word.length <= maxWordSize, "result exceeded 5 letters");
     });
   });
-  it("should return words with length from 3 to 5 ", function () {
+  it("should only return words with the length between 3 and 5", function () {
     const minLengthSize = 3;
     const maxLengthSize = 5;
     const words = randomWords({
@@ -81,10 +100,13 @@ describe("random-words", function () {
       maxLength: maxLengthSize,
     });
     words.forEach((word) => {
-      assert.ok(word.length >= minLengthSize && word.length <= maxLengthSize);
+      assert.ok(
+        word.length >= minLengthSize && word.length <= maxLengthSize,
+        "result is not between the limit of 3 and 5"
+      );
     });
   });
-  it("should return words with length = 5", function () {
+  it("should only return words with length = 5", function () {
     const wordSize = 5;
     const words = randomWords({
       exactly: 10000,
@@ -92,13 +114,13 @@ describe("random-words", function () {
       maxLength: wordSize,
     });
     words.forEach((word) => {
-      assert.ok(word.length === wordSize);
+      assert.ok(word.length === wordSize, "word length is different from 5");
     });
   });
   it("maxLength larger than the longest word should not result in an endless loop", function () {
     const wordSize = 100000;
     const words = randomWords({
-      exactly: 1000,
+      exactly: 500,
       maxLength: wordSize,
     });
     words.forEach((word) => {
@@ -118,7 +140,10 @@ describe("random-words", function () {
   it("must return a word even without passing a number to minLength and maxLength", function () {
     const word1 = randomWords({ minLength: undefined, maxLength: false });
     const word2 = randomWords({ minLength: "string", maxLength: null });
-    assert.ok(typeof word1 === "string" && typeof word2 === "string");
+    assert.ok(
+      typeof word1 === "string" && typeof word2 === "string",
+      "result is not a string"
+    );
   });
   it("should return 5 space separated words for each string if wordsPerString is set to 5 and exactly > 1", function () {
     const words = randomWords({ exactly: 10, wordsPerString: 5 });
