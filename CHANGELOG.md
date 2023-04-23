@@ -4,7 +4,6 @@
 
 - Addition of `minLength` and `maxLength` options
 - Code update to ES6 Syntax
-- separation of word array: `words/wordList.js`
 
 Update by [Nellfs](https://github.com/nellfs)
 
