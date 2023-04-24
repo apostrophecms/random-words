@@ -120,7 +120,7 @@ describe("random-words", function () {
   it("maxLength larger than the longest word should not result in an endless loop", function () {
     const wordSize = 100000;
     const words = randomWords({
-      exactly: 500,
+      exactly: 1000,
       maxLength: wordSize,
     });
     words.forEach((word) => {
