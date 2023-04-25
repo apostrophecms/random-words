@@ -14,46 +14,86 @@ Installation:
 
 Examples:
 
-    var randomWords = require('random-words');
+```js
+import randomWords from "random-words";
 
-    console.log(randomWords());
-    army
+console.log(randomWords());
+//output: 'army'
 
-    console.log(randomWords(5));
-    ['army', 'beautiful', 'became', 'if', 'actually']
+console.log(randomWords(5));
+//output: ['army', 'beautiful', 'became', 'if', 'actually']
 
-    console.log(randomWords({ min: 3, max: 10 }));
-    ['became', 'arrow', 'article', 'therefore']
+console.log(randomWords({ minLength: 2 }));
+//output: 'hello'
 
-    console.log(randomWords({ exactly: 2 }));
-    ['beside', 'between']
+console.log(randomWords({ maxLength: 6 }));
+//output: 'blue'
 
-    console.log(randomWords({ min: 2, max: 3, seed: 'my-seed' }));
-    ['plenty', 'pure']
+console.log(randomWords({ minLength: 5, maxLength: 5 }));
+//output : 'world'
 
-    // this call will yield exactly the same results as the last since the same `seed` was used and the other inputs are identical
-    console.log(randomWords({ min: 2, max: 3, seed: 'my-seed' }));
-    ['plenty', 'pure']
+console.log(randomWords({ minLength: 11, maxLength: 10000 })); //maxLength limited to the longest possible word
+//output: 'environment'
 
-    console.log(randomWords({ exactly: 5, join: ' ' }))
-    'army beautiful became if exactly'
-    
-    console.log(randomWords({ exactly: 5, join: '' }))
-        'armybeautifulbecameifexactly'
+console.log(randomWords({ minLength: 10000, maxLength: 5 })); //minLength limited to the maxLength
+//output: 'short'
 
-    console.log(randomWords({exactly: 5, maxLength: 4}))
-    ['army','come','eye','five','fur']
+console.log(randomWords({ min: 3, max: 10 }));
+//output: ['became', 'arrow', 'article', 'therefore']
 
-    console.log(randomWords({exactly:5, wordsPerString:2}))
-    [ 'salt practical', 'also brief', 'country muscle', 'neighborhood beyond', 'grew pig' ]
+console.log(randomWords({ exactly: 2 }));
+//output: ['beside', 'between']
 
-    console.log(randomWords({exactly:5, wordsPerString:2, separator:'-'}))
-    [ 'equator-variety', 'salt-usually', 'importance-becoming', 'stream-several', 'goes-fight' ]
+console.log(randomWords({ min: 2, max: 3, seed: "my-seed" }));
+//output: ['plenty', 'pure']
 
-    console.log(randomWords({exactly:5, wordsPerString:2, formatter: (word)=> word.toUpperCase()}))
-    [ 'HAVING LOAD', 'LOST PINE', 'GAME SLOPE', 'SECRET GIANT', 'INDEED LOCATION' ]
+// this call will yield exactly the same results as the last since the same `seed` was used and the other inputs are identical
+console.log(randomWords({ min: 2, max: 3, seed: "my-seed" }));
+//output: ['plenty', 'pure']
 
-    console.log(randomWords({exactly:5, wordsPerString:2, formatter: (word, index)=> {
-        return index === 0 ? word.slice(0,1).toUpperCase().concat(word.slice(1)) : word;
-    }}))
-    [ 'Until smoke', 'Year strength', 'Pay knew', 'Fallen must', 'Chief arrow' ]
+console.log(randomWords({ exactly: 5, join: " " }));
+//output: 'army beautiful became if exactly'
+
+console.log(randomWords({ exactly: 5, join: "" }));
+//output: 'armybeautifulbecameifexactly'
+
+console.log(randomWords({ exactly: 2, minLength: 4 }));
+//output: ['atom', 'window']
+
+console.log(randomWords({ exactly: 5, maxLength: 4 }));
+//output: ['army', 'come', 'eye', 'five', 'fur']
+
+console.log(randomWords({ exactly: 2, minLength: 3, maxLength: 3 }));
+//output: ['you, 'are']
+
+console.log(randomWords({ exactly: 3, minLength: 5, maxLength: 100000 }));
+//output: ['understanding', 'should', 'yourself']
+
+console.log(randomWords({ exactly: 5, wordsPerString: 2 }));
+//ooutput: [ 'salt practical', 'also brief', 'country muscle', 'neighborhood beyond', 'grew pig' ]
+
+console.log(randomWords({ exactly: 5, wordsPerString: 2, separator: "-" }));
+//output: [ 'equator-variety', 'salt-usually', 'importance-becoming', 'stream-several', 'goes-fight' ]
+
+console.log(
+  randomWords({
+    exactly: 5,
+    wordsPerString: 2,
+    formatter: (word) => word.toUpperCase(),
+  })
+);
+//output: [ 'HAVING LOAD', 'LOST PINE', 'GAME SLOPE', 'SECRET GIANT', 'INDEED LOCATION' ]
+
+console.log(
+  randomWords({
+    exactly: 5,
+    wordsPerString: 2,
+    formatter: (word, index) => {
+      return index === 0
+        ? word.slice(0, 1).toUpperCase().concat(word.slice(1))
+        : word;
+    },
+  })
+);
+//output: [ 'Until smoke', 'Year strength', 'Pay knew', 'Fallen must', 'Chief arrow' ]
+```
