@@ -2,10 +2,10 @@
 
 ## UNRELEASED
 
-- Addition of `minLength` and `maxLength` options
+This is a significant update that transforms this module into an ECMAScript module. 
+- Addition of `minLength` option
 - Code update to ES6 Syntax
-
-Update by [Nellfs](https://github.com/nellfs)
+- Update by [Nellfs](https://github.com/nellfs)
 
 ## 1.3.0 - 2023-02-17
 
