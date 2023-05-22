@@ -16,8 +16,7 @@ declare function generate(count?: number): string[];
 declare function generate(options: GenerateOptions): string[];
 declare function generate(options: JoinedWordsOptions): string;
 
-export const wordsList: string[];
-export default generate;
+declare const wordsList: string[];
 
 declare type CountOptions = {
   minLength?: number;
@@ -25,3 +24,5 @@ declare type CountOptions = {
 };
 
 declare function count(options?: CountOptions): number;
+
+export { generate, count, wordsList };
