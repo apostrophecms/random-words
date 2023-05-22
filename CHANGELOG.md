@@ -2,6 +2,8 @@
 
 ## UNRELEASED
 
+- Converted default export to named export (generate) to generate random words.
+- Adds `count` named export to count number of words.
 This is a significant update that transforms this module into an ECMAScript module. 
 - Addition of `minLength` option
 - Code update to ES6 Syntax

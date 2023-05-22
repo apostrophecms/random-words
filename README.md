@@ -6,7 +6,7 @@
 
 Cryptographic-quality randomness is NOT the goal, as speed matters for generating sample text and security does not. As such, `Math.random()` is used in most cases.
 
-The `seed` option can be used for situations that require deterministic output. When given the same `seed` with the same input, `randomWords()` will yield deterministic results, in regards to both actual word selection and the number of words returned (when using `min` and `max`). The underlying implementation of this option utilizes the [seedrandom](https://www.npmjs.com/package/seedrandom) package as a replacement for `Math.random()`.
+The `seed` option can be used for situations that require deterministic output. When given the same `seed` with the same input, `generate()` will yield deterministic results, in regards to both actual word selection and the number of words returned (when using `min` and `max`). The underlying implementation of this option utilizes the [seedrandom](https://www.npmjs.com/package/seedrandom) package as a replacement for `Math.random()`.
 
 Installation:
 
@@ -15,68 +15,68 @@ Installation:
 Examples:
 
 ```js
-import randomWords from "random-words";
+import { generate, count } from "random-words";
 
-console.log(randomWords());
+console.log(generate());
 //output: 'army'
 
-console.log(randomWords(5));
+console.log(generate(5));
 //output: ['army', 'beautiful', 'became', 'if', 'actually']
 
-console.log(randomWords({ minLength: 2 }));
+console.log(generate({ minLength: 2 }));
 //output: 'hello'
 
-console.log(randomWords({ maxLength: 6 }));
+console.log(generate({ maxLength: 6 }));
 //output: 'blue'
 
-console.log(randomWords({ minLength: 5, maxLength: 5 }));
+console.log(generate({ minLength: 5, maxLength: 5 }));
 //output : 'world'
 
-console.log(randomWords({ minLength: 11, maxLength: 10000 })); //maxLength limited to the longest possible word
+console.log(generate({ minLength: 11, maxLength: 10000 })); //maxLength limited to the longest possible word
 //output: 'environment'
 
-console.log(randomWords({ minLength: 10000, maxLength: 5 })); //minLength limited to the maxLength
+console.log(generate({ minLength: 10000, maxLength: 5 })); //minLength limited to the maxLength
 //output: 'short'
 
-console.log(randomWords({ min: 3, max: 10 }));
+console.log(generate({ min: 3, max: 10 }));
 //output: ['became', 'arrow', 'article', 'therefore']
 
-console.log(randomWords({ exactly: 2 }));
+console.log(generate({ exactly: 2 }));
 //output: ['beside', 'between']
 
-console.log(randomWords({ min: 2, max: 3, seed: "my-seed" }));
+console.log(generate({ min: 2, max: 3, seed: "my-seed" }));
 //output: ['plenty', 'pure']
 
 // this call will yield exactly the same results as the last since the same `seed` was used and the other inputs are identical
-console.log(randomWords({ min: 2, max: 3, seed: "my-seed" }));
+console.log(generate({ min: 2, max: 3, seed: "my-seed" }));
 //output: ['plenty', 'pure']
 
-console.log(randomWords({ exactly: 5, join: " " }));
+console.log(generate({ exactly: 5, join: " " }));
 //output: 'army beautiful became if exactly'
 
-console.log(randomWords({ exactly: 5, join: "" }));
+console.log(generate({ exactly: 5, join: "" }));
 //output: 'armybeautifulbecameifexactly'
 
-console.log(randomWords({ exactly: 2, minLength: 4 }));
+console.log(generate({ exactly: 2, minLength: 4 }));
 //output: ['atom', 'window']
 
-console.log(randomWords({ exactly: 5, maxLength: 4 }));
+console.log(generate({ exactly: 5, maxLength: 4 }));
 //output: ['army', 'come', 'eye', 'five', 'fur']
 
-console.log(randomWords({ exactly: 2, minLength: 3, maxLength: 3 }));
+console.log(generate({ exactly: 2, minLength: 3, maxLength: 3 }));
 //output: ['you, 'are']
 
-console.log(randomWords({ exactly: 3, minLength: 5, maxLength: 100000 }));
+console.log(generate({ exactly: 3, minLength: 5, maxLength: 100000 }));
 //output: ['understanding', 'should', 'yourself']
 
-console.log(randomWords({ exactly: 5, wordsPerString: 2 }));
+console.log(generate({ exactly: 5, wordsPerString: 2 }));
 //ooutput: [ 'salt practical', 'also brief', 'country muscle', 'neighborhood beyond', 'grew pig' ]
 
-console.log(randomWords({ exactly: 5, wordsPerString: 2, separator: "-" }));
+console.log(generate({ exactly: 5, wordsPerString: 2, separator: "-" }));
 //output: [ 'equator-variety', 'salt-usually', 'importance-becoming', 'stream-several', 'goes-fight' ]
 
 console.log(
-  randomWords({
+  generate({
     exactly: 5,
     wordsPerString: 2,
     formatter: (word) => word.toUpperCase(),
@@ -85,7 +85,7 @@ console.log(
 //output: [ 'HAVING LOAD', 'LOST PINE', 'GAME SLOPE', 'SECRET GIANT', 'INDEED LOCATION' ]
 
 console.log(
-  randomWords({
+  generate({
     exactly: 5,
     wordsPerString: 2,
     formatter: (word, index) => {
@@ -96,4 +96,17 @@ console.log(
   })
 );
 //output: [ 'Until smoke', 'Year strength', 'Pay knew', 'Fallen must', 'Chief arrow' ]
+
+console.log(count());
+//output: 1952
+
+console.log(count({ minLength: 5 }));
+//output: 1318 
+
+console.log(count({ maxLength: 7 }));
+//output: 1649
+
+console.log(count({ minLength: 5, maxLength: 7 }));
+//output: 1015
+
 ```
