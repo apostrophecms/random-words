@@ -6,7 +6,9 @@
 
 Cryptographic-quality randomness is NOT the goal, as speed matters for generating sample text and security does not. As such, `Math.random()` is used in most cases.
 
-The `seed` option can be used for situations that require deterministic output. When given the same `seed` with the same input, `generate()` will yield deterministic results, in regards to both actual word selection and the number of words returned (when using `min` and `max`). The underlying implementation of this option utilizes the [seedrandom](https://www.npmjs.com/package/seedrandom) package as a replacement for `Math.random()`.
+The `seed` option can be used with the `generate` function for situations that require deterministic output. When given the same `seed` with the same input, `generate()` will yield deterministic results, in regards to both actual word selection and the number of words returned (when using `min` and `max`). The underlying implementation of this option utilizes the [seedrandom](https://www.npmjs.com/package/seedrandom) package as a replacement for `Math.random()`.
+
+The `count` function can be used to calculate the total number of words in the word list that meet the specified minimum and maximum length criteria.
 
 Installation:
 
@@ -70,7 +72,7 @@ console.log(generate({ exactly: 3, minLength: 5, maxLength: 100000 }));
 //output: ['understanding', 'should', 'yourself']
 
 console.log(generate({ exactly: 5, wordsPerString: 2 }));
-//ooutput: [ 'salt practical', 'also brief', 'country muscle', 'neighborhood beyond', 'grew pig' ]
+//output: [ 'salt practical', 'also brief', 'country muscle', 'neighborhood beyond', 'grew pig' ]
 
 console.log(generate({ exactly: 5, wordsPerString: 2, separator: "-" }));
 //output: [ 'equator-variety', 'salt-usually', 'importance-becoming', 'stream-several', 'goes-fight' ]
