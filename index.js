@@ -1964,7 +1964,7 @@ const longestWordSize = wordList.reduce((longestWord, currentWord) =>
   currentWord.length > longestWord.length ? currentWord : longestWord
 ).length;
 
-function words(options) {
+export function generate(options) {
   // initalize random number generator for words if options.seed is provided
   const random = options?.seed ? new seedrandom(options.seed) : null;
 
@@ -2067,4 +2067,18 @@ function words(options) {
   return results;
 }
 
-export default words;
+export function count(options) {
+  let { minLength, maxLength } = options || {};
+
+  if (typeof minLength !== "number") {
+    minLength = shortestWordSize;
+  }
+
+  if (typeof maxLength !== "number") {
+    maxLength = longestWordSize;
+  }
+
+  return wordList.filter(
+    (word) => word.length >= minLength && word.length <= maxLength
+  ).length;
+}

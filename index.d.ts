@@ -1,4 +1,4 @@
-declare type WordsOptions = {
+declare type GenerateOptions = {
   min?: number;
   max?: number;
   exactly?: number;
@@ -10,11 +10,19 @@ declare type WordsOptions = {
   seed?: string;
 };
 
-declare type JoinedWordsOptions = WordsOptions & { join: string };
+declare type JoinedWordsOptions = GenerateOptions & { join: string };
 
-declare function words(count?: number): string[];
-declare function words(options: WordsOptions): string[];
-declare function words(options: JoinedWordsOptions): string;
+declare function generate(count?: number): string[];
+declare function generate(options: GenerateOptions): string[];
+declare function generate(options: JoinedWordsOptions): string;
 
-export const wordsList: string[];
-export default words;
+declare const wordsList: string[];
+
+declare type CountOptions = {
+  minLength?: number;
+  maxLength?: number;
+};
+
+declare function count(options?: CountOptions): number;
+
+export { generate, count, wordsList };
