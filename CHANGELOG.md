@@ -2,7 +2,7 @@
 
 ## UNRELEASED
 
-This is a significant update that transforms this module into an ECMAScript module and changes the name of the exported function.
+This is a significant update that transforms this module into an ECMAScript module and changes the name of the exported function. For that reason, we have updated the major version number.
 
 - Converted default export to named export (generate) to generate random words.
 - Adds `count` named export to count number of words.
