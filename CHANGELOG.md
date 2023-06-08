@@ -1,14 +1,14 @@
 # Changelog
 
-## UNRELEASED
+## 2.0.0 - 2023-06-08
 
 This is a significant update that transforms this module into an ECMAScript module and changes the name of the exported function. For that reason, we have updated the major version number.
 
-- Converted default export to named export (generate) to generate random words.
+- Converted default export to named export (`generate`) to generate random words.
 - Adds `count` named export to count number of words.
 - Thanks to [prateek-budhiraja](https://github.com/prateek-budhiraja) for these updates.
-- Addition of `minLength` option
-- Code update to ES6 Syntax
+- Addition of `minLength` option.
+- Code update to ES6 Syntax.
 - Thanks to [Nellfs](https://github.com/nellfs) for these updates.
 
 ## 1.3.0 - 2023-02-17
