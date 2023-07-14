@@ -2082,3 +2082,20 @@ export function count(options) {
     (word) => word.length >= minLength && word.length <= maxLength
   ).length;
 }
+
+
+export function generateRandomWordStartingWith(startingLetter) {
+	const filteredList = wordList.filter((word) =>
+		word.startsWith(startingLetter)
+	);
+
+	let result = null;
+	if (filteredList.length > 0) {
+		const randomIndex = Math.floor(Math.random() * filteredList.length);
+		result = filteredList[randomIndex];
+	}
+
+	return result;
+}
+
+console.log(generateRandomWordStartingWith("ñ"));
