@@ -1,5 +1,12 @@
 # Changelog
 
+## UNRELEASED
+
+Added Function generateRandomWordStartingWith() 
+- That will take a string an input.
+- Returns a random words starting from the input string from the provided list of words.
+- Returns null in case of any invalid input or if the word is not present with the starting input.
+
 ## 2.0.0 - 2023-06-08
 
 This is a significant update that transforms this module into an ECMAScript module and changes the name of the exported function. For that reason, we have updated the major version number.
