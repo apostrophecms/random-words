@@ -25,8 +25,4 @@ declare type CountOptions = {
 
 declare function count(options?: CountOptions): number;
 
-declare function generateRandomWordStartingWith(
-	startingLetter: string | null
-): string | null;
-
-export { generate, count, wordsList, generateRandomWordStartingWith };
+export { generate, count, wordsList };
