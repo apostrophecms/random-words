@@ -2,7 +2,7 @@
 
 ## UNRELEASED
 
-- Fixed return type of `generate` so that it is consistent with the possibility of returning a `string` rather than a `string[]`
+- Fixed return type of `generate` so that it is consistent with the possibility of returning either `string` or `string[]`
 
 ## 2.0.0 - 2023-06-08
 
