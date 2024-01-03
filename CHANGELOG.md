@@ -1,5 +1,9 @@
 # Changelog
 
+## UNRELEASED
+
+- Fixed return type of `generate` so that it is consistent with the possibility of returning either `string` or `string[]`
+
 ## 2.0.0 - 2023-06-08
 
 This is a significant update that transforms this module into an ECMAScript module and changes the name of the exported function. For that reason, we have updated the major version number.
