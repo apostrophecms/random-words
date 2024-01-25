@@ -1,6 +1,6 @@
 # Changelog
 
-## UNRELEASED
+## 2.0.1 (2024-01-25)
 
 - Fixed return type of `generate` so that it is consistent with the possibility of returning either `string` or `string[]`
 
