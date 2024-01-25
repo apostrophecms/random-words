@@ -16,7 +16,7 @@ declare function generate(count?: number): string | string[];
 declare function generate(options: GenerateOptions): string | string[];
 declare function generate(options: JoinedWordsOptions): string;
 
-declare const wordsList: string[];
+declare const wordList: string[];
 
 declare type CountOptions = {
   minLength?: number;
