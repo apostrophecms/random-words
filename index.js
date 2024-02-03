@@ -1965,11 +1965,13 @@ const longestWordSize = wordList.reduce((longestWord, currentWord) =>
 ).length;
 
 export function generate(options) {
-  // initalize random number generator for words if options.seed is provided
+  // Initialize random number generator for words if options.seed is provided
   const random = options?.seed ? new seedrandom(options.seed) : null;
 
-  const { minLength, maxLength, ...rest } = options || {};
+  // Destructure options
+  const { minLength, maxLength, prefix, ...rest } = options || {};
 
+  // Function to generate a random word
   function word() {
     let min =
       typeof minLength !== "number"
@@ -1986,14 +1988,31 @@ export function generate(options) {
     let rightSize = false;
     let wordUsed;
     while (!rightSize) {
-      wordUsed = generateRandomWord();
+      // Generate a random word with the provided prefix (if any)
+      wordUsed = generateRandomWord(prefix);
       rightSize = wordUsed.length <= max && wordUsed.length >= min;
     }
     return wordUsed;
   }
 
-  function generateRandomWord() {
-    return wordList[randInt(wordList.length)];
+  // Function to generate a random word with an optional prefix
+  function generateRandomWord(prefix = null) {
+    let result = null;
+
+    // Filter the wordList to find words starting with the specified prefix
+    if (prefix) {
+      const filteredList = wordList.filter((word) =>
+        word.startsWith(prefix)
+      );
+      if (filteredList.length > 0) {
+        const randomIndex = Math.floor(Math.random() * filteredList.length);
+        result = filteredList[randomIndex];
+      }
+    } 
+    else {
+      result = wordList[randInt(wordList.length)];
+    }
+    return result;
   }
 
   // limits the size of words to the minimum and maximum possible
