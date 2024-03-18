@@ -1956,29 +1956,51 @@ export const wordList = [
   "zulu",
 ];
 
-const shortestWordSize = wordList.reduce((shortestWord, currentWord) =>
-  currentWord.length < shortestWord.length ? currentWord : shortestWord
-).length;
+function shortestWordSize(wordList) {
+  return wordList.reduce((shortestWord, currentWord) =>
+    currentWord.length < shortestWord.length ? currentWord : shortestWord
+  ).length;
+}
 
-const longestWordSize = wordList.reduce((longestWord, currentWord) =>
-  currentWord.length > longestWord.length ? currentWord : longestWord
-).length;
+function longestWordSize(wordList) {
+  return wordList.reduce((longestWord, currentWord) =>
+    currentWord.length > longestWord.length ? currentWord : longestWord
+  ).length;
+}
+
+// custom word lists are filtered and validated against emptiness;
+// otherwise the default list is returned
+function validateWordList(list) {
+  if (!Array.isArray(list) || list.length === 0) {
+    return wordList;
+  }
+  const cleanedList = list.filter(val => typeof val === "string")
+  return cleanedList.length > 0 ? cleanedList : wordList;
+}
 
 export function generate(options) {
   // initalize random number generator for words if options.seed is provided
   const random = options?.seed ? new seedrandom(options.seed) : null;
 
+  // if `options` is just a number, set `exactly` in options to return that many words
+  if (typeof options === "number") {
+    options = { exactly: options };
+  }
+
   const { minLength, maxLength, ...rest } = options || {};
+
+  const list = validateWordList(rest?.wordList);
+  delete rest.wordList;
 
   function word() {
     let min =
-      typeof minLength !== "number"
-        ? shortestWordSize
-        : limitWordSize(minLength);
+      typeof minLength !== "number" ?
+        shortestWordSize(list) :
+        limitWordSize(minLength);
 
     const max =
       typeof maxLength !== "number"
-        ? longestWordSize
+        ? longestWordSize(list)
         : limitWordSize(maxLength);
 
     if (min > max) min = max;
@@ -1993,13 +2015,13 @@ export function generate(options) {
   }
 
   function generateRandomWord() {
-    return wordList[randInt(wordList.length)];
+    return list[randInt(list.length)];
   }
 
   // limits the size of words to the minimum and maximum possible
   function limitWordSize(wordSize) {
-    if (wordSize < shortestWordSize) wordSize = shortestWordSize;
-    if (wordSize > longestWordSize) wordSize = longestWordSize;
+    if (wordSize < shortestWordSize(list)) wordSize = shortestWordSize(list);
+    if (wordSize > longestWordSize(list)) wordSize = longestWordSize(list);
     return wordSize;
   }
 
@@ -2009,15 +2031,13 @@ export function generate(options) {
     return Math.floor(r * lessThan);
   }
 
-  // No arguments = generate one word
+  // No argument = Generates one word as-is
   if (options === undefined) {
     return word();
   }
 
-  // Just a number = return that many words
-  if (typeof options === "number") {
-    options = { exactly: options };
-  } else if (Object.keys(rest).length === 0) {
+  // if `options` only contains minLength, maxLength, or wordList, generate one word as-is
+  if (Object.keys(rest).length === 0) {
     return word();
   }
 
@@ -2034,7 +2054,7 @@ export function generate(options) {
 
   //not a function = returns the raw word
   if (typeof options.formatter !== "function") {
-    options.formatter = (word) => word;
+    options.formatter = word => word;
   }
 
   //not a string = separator is a space
@@ -2043,7 +2063,7 @@ export function generate(options) {
   }
 
   const total = options.min + randInt(options.max + 1 - options.min);
-  let results = [];
+  const results = [];
   let token = "";
   let relativeIndex = 0;
 
@@ -2060,25 +2080,28 @@ export function generate(options) {
       relativeIndex = 0;
     }
   }
+
   if (typeof options.join === "string") {
-    results = results.join(options.join);
+    return results.join(options.join);
   }
 
   return results;
 }
 
 export function count(options) {
-  let { minLength, maxLength } = options || {};
+  let { minLength, maxLength, ...rest } = options || {};
+
+  const list = validateWordList(rest?.wordList);
 
   if (typeof minLength !== "number") {
-    minLength = shortestWordSize;
+    minLength = shortestWordSize(list);
   }
 
   if (typeof maxLength !== "number") {
-    maxLength = longestWordSize;
+    maxLength = longestWordSize(list);
   }
 
-  return wordList.filter(
+  return list.filter(
     (word) => word.length >= minLength && word.length <= maxLength
   ).length;
 }

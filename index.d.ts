@@ -8,6 +8,7 @@ declare type GenerateOptions = {
   separator?: string;
   formatter?: (word: string, index: number) => string;
   seed?: string;
+  wordList?: string[];
 };
 
 declare type JoinedWordsOptions = GenerateOptions & { join: string };
@@ -16,7 +17,7 @@ declare function generate(count?: number): string | string[];
 declare function generate(options: GenerateOptions): string | string[];
 declare function generate(options: JoinedWordsOptions): string;
 
-declare const wordsList: string[];
+declare const wordList: string[];
 
 declare type CountOptions = {
   minLength?: number;
@@ -25,4 +26,4 @@ declare type CountOptions = {
 
 declare function count(options?: CountOptions): number;
 
-export { generate, count, wordsList };
+export { generate, count, wordList };
