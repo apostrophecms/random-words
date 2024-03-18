@@ -1,22 +1,32 @@
 # random-words
 
-## Generate one or more common English words
+## Generate one or more common English words (by default)
 
 `random-words` generates random words for use as sample text. We use it to generate random blog posts when testing [Apostrophe](http://apostrophecms.org).
 
-Cryptographic-quality randomness is NOT the goal, as speed matters for generating sample text and security does not. As such, `Math.random()` is used in most cases.
+Cryptographic-quality randomness is NOT the goal, as speed matters for generating sample text and security does not. 
+As such, `Math.random()` is used in most cases.
 
-The `seed` option can be used with the `generate` function for situations that require deterministic output. When given the same `seed` with the same input, `generate()` will yield deterministic results, in regards to both actual word selection and the number of words returned (when using `min` and `max`). The underlying implementation of this option utilizes the [seedrandom](https://www.npmjs.com/package/seedrandom) package as a replacement for `Math.random()`.
+The `seed` option can be used with the `generate` function for situations that require deterministic output. 
+When given the same `seed` with the same input, `generate()` will yield deterministic results, 
+in regards to both actual word selection and the number of words returned (when using `min` and `max`). 
+The underlying implementation of this option utilizes the [seedrandom](https://www.npmjs.com/package/seedrandom) package as a replacement for `Math.random()`.
 
 The `count` function can be used to calculate the total number of words in the word list that meet the specified minimum and maximum length criteria.
 
-Installation:
+A default list of common English words is embedded in (and exported as `wordList` from) the package. 
+But both `generate` and `count` functions can be supplied a custom list of words 
+by passing a string array to the `wordList` option. 
 
-    npm install random-words
+### Installation
 
-Examples:
+```
+npm install random-words
+```
 
-```js
+### Examples
+
+```javascript
 import { generate, count } from "random-words";
 
 console.log(generate());
@@ -24,6 +34,9 @@ console.log(generate());
 
 console.log(generate(5));
 //output: ['army', 'beautiful', 'became', 'if', 'actually']
+
+console.log(generate({ wordList: ["hello world", "bonjour le monde", "hallo welt", "こんにちは世界", "สวัสดีชาวโลก"] }));
+//output: 'hello world'
 
 console.log(generate({ minLength: 2 }));
 //output: 'hello'
@@ -111,4 +124,9 @@ console.log(count({ maxLength: 7 }));
 console.log(count({ minLength: 5, maxLength: 7 }));
 //output: 1015
 
+console.log(count({ wordList: ["hello world", "bonjour le monde", "hallo welt", "こんにちは世界", "สวัสดีชาวโลก"] }));
+//output: 5
+
+console.log(count({ minLength: 8, wordList: ["hello world", "bonjour le monde", "hallo welt", "こんにちは世界", "สวัสดีชาวโลก"] }));
+//output: 4
 ```
