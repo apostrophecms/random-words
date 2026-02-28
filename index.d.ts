@@ -12,7 +12,8 @@ declare type GenerateOptions = {
 
 declare type JoinedWordsOptions = GenerateOptions & { join: string };
 
-declare function generate(count?: number): string | string[];
+declare function generate(): string;
+declare function generate(count: number): string[];
 declare function generate(options: GenerateOptions): string | string[];
 declare function generate(options: JoinedWordsOptions): string;
 
